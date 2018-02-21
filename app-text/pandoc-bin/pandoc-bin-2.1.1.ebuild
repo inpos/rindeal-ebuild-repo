@@ -12,10 +12,10 @@ DESCRIPTION="Universal markup converter"
 HOMEPAGE="https://pandoc.org https://github.com/jgm/pandoc"
 LICENSE="GPL-2"
 
-MY_PN="${PN//-bin/}"
+PN_NOBIN="${PN//-bin/}"
 
 SLOT="0"
-SRC_URI="amd64? ( https://github.com/jgm/${MY_PN}/releases/download/${PV}/${MY_PN}-${PV}-1-amd64.deb )"
+SRC_URI="amd64? ( https://github.com/jgm/${PN_NOBIN}/releases/download/${PV}/${PN_NOBIN}-${PV}-1-amd64.deb )"
 
 KEYWORDS="-* amd64"
 IUSE_A=( citeproc )
@@ -26,8 +26,8 @@ CDEPEND_A=(
 )
 DEPEND_A=( "${CDEPEND_A[@]}" )
 RDEPEND_A=( "${CDEPEND_A[@]}"
-	"!app-text/pandoc"
-	"citeproc? ( !dev-haskell/pandoc-citeproc )"
+	"!app-text/${PN_NOBIN}"
+	"citeproc? ( !dev-haskell/${PN_NOBIN}-citeproc )"
 )
 
 RESTRICT+=" mirror"
@@ -46,12 +46,12 @@ src_prepare() {
 
 src_install() {
 	cd "${S}"/usr/bin || die
-	dobin "${MY_PN}"
-	use citeproc && dobin 'pandoc-citeproc'
+	dobin "${PN_NOBIN}"
+	use citeproc && dobin "${PN_NOBIN}-citeproc"
 
 	cd "${S}"/usr/share/man/man1 || die
-	doman "${MY_PN}.1"
-	use citeproc && doman 'pandoc-citeproc.1'
+	doman "${PN_NOBIN}.1"
+	use citeproc && doman "${PN_NOBIN}-citeproc.1"
 }
 
 QA_EXECSTACK="usr/bin/pandoc"
