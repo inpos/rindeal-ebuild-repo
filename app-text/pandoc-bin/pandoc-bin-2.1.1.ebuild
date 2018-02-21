@@ -54,5 +54,5 @@ src_install() {
 	use citeproc && doman "${PN_NOBIN}-citeproc.1"
 }
 
-QA_EXECSTACK="usr/bin/pandoc"
-QA_PRESTRIPPED="usr/bin/pandoc"
+QA_EXECSTACK="usr/bin/.*"
+QA_PRESTRIPPED="usr/bin/.*"
