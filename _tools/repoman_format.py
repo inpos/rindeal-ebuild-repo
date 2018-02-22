@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+##
+# Copyright 2018 Jan Chren (rindeal)
+# Distributed under the terms of the GNU General Public License v2
+##
 
 # -----------------------------------------------------------------------------
 
@@ -220,7 +224,7 @@ def print_msgs(msgs, indent_lvl=0):
 def print_msgcodes(msgcodes, indent_lvl=0):
 	for msgcode in msgcodes.values():
 		print_indented_line(
-			msgcode.name + ":",
+			cyan(msgcode.name) + ":",
 			indent_lvl
 		)
 		if msgcode.msgs:
@@ -229,7 +233,7 @@ def print_msgcodes(msgcodes, indent_lvl=0):
 def print_files(files, indent_lvl=0):
 	for f in files.values():
 		print_indented_line(
-			f.name + ":",
+			blue(f.name) + ":",
 			indent_lvl
 		)
 		if f.msgcodes:
@@ -249,11 +253,17 @@ def print_pkgs(pkgs, indent_lvl=0):
 			print_msgs(pkg.msgs, indent_lvl + 1)
 
 def print_results(pkgs):
+	print()
+	print(yellow("Repoman results".center(80, ' ')))
+	print(green("="*80))
+	print()
+
 	if pkgs:
 		print_pkgs(pkgs, 0)
 	if OTHER_MSGCODES:
-		print("Other messages")
-		print_msgcodes(OTHER_MSGCODES)
+		print()
+		print(yellow(bg_black("Other messages")) + ":")
+		print_msgcodes(OTHER_MSGCODES, 1)
 
 RAW_INPUT = []
 
@@ -271,6 +281,7 @@ with fileinput.input() as stdin:
 
 		RAW_INPUT.append(line)
 
+		line = line.rstrip()
 		process_line(line)
 
 PKGS.sort()
