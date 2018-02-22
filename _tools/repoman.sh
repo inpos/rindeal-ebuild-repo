@@ -1,3 +1,3 @@
 #!/bin/bash
 
-repoman full --verbose --output-style column "$@" | "$( dirname "${BASH_SOURCE[0]}" )"/repoman_format.py
+cat "$( dirname "${BASH_SOURCE[0]}" )"/repoman | "$( dirname "${BASH_SOURCE[0]}" )"/repoman_format.py
