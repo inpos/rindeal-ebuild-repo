@@ -29,7 +29,9 @@ IUSE_A=( )
 CDEPEND_A=()
 DEPEND_A=( "${CDEPEND_A[@]}" )
 RDEPEND_A=( "${CDEPEND_A[@]}"
-	"dev-python/docker-py[${PYTHON_USEDEP}]"
+	# the 3.x versions are unstable for now
+	# https://github.com/goldmann/docker-squash/issues/158
+	"<dev-python/docker-py-3[${PYTHON_USEDEP}]"
 )
 
 REQUIRED_USE_A=(  )
