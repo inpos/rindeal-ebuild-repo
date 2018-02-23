@@ -97,12 +97,13 @@ src_configure() {
 
 		### Optional Features:
 		$(use_enable largefile)
-		$(use_enable shared)
+		$(use_enable shared-libs shared)
 		$(use_enable static-libs static)
 		$(use_enable nls)
 		$(use_enable rpath)
 
 		### Optional Packages:
+		$(use_with pic)
 		$(use_with gnu-ld)
 	)
 	econf "${my_econf_args[@]}"
@@ -127,10 +128,11 @@ src_configure() {
 src_install() {
 	default
 	{% if meson %}
+
 	meson_src_install
 	{% endif %}
-
 	{% if desktop %}
+
 	doicon -s foo.svg
 
 	local make_desktop_entry_args=(
@@ -145,8 +147,8 @@ src_install() {
 	make_desktop_entry "${make_desktop_entry_args[@]}" \
 		"$( printf '%s\n' "${make_desktop_entry_extras[@]}" )"
 	{% endif %}
-
 	{% if autoconf %}
+
 	prune_libtool_files
 	{% endif %}
 }
