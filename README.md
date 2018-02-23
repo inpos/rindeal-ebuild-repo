@@ -70,6 +70,13 @@ emerge --sync
 layman -o 'https://ebuilds.janchren.eu/repos/rindeal/repositories.xml' -f -a rindeal
 ```
 
+#### 3. Enable "unstable" packages
+
+`/etc/portage/package.accepted_keywords`:
+```sh
+*/*::rindeal ~amd64 # or ~arm/~arm64
+```
+
 
 Quality Assurance
 ------------------
