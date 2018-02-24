@@ -18,7 +18,6 @@ the pycurl interface.
   </upstream>
   <use>
     <flag name="ssl_gnutls">ssl_gnutls</flag>
-    <flag name="ssl_libressl">ssl_libressl</flag>
     <flag name="ssl_nss">ssl_nss</flag>
     <flag name="ssl_openssl">ssl_openssl</flag>
   </use>
