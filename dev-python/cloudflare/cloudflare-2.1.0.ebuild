@@ -4,8 +4,10 @@
 EAPI=6
 inherit rindeal
 
+## git-hsoting.eclass:
 GH_RN="github:cloudflare:python-cloudflare"
 
+## python-*.eclass:
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 
 ## EXPORT_FUNCTIONS: src_unpack
